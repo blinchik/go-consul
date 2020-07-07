@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
+	acl "github.com/blinchik/go-consul/acl"
 	discover "github.com/blinchik/go-utils/discover"
-	acl "gitlab.com/blinchik-go/go-consul/acl"
 )
 
 var consulAddress string
