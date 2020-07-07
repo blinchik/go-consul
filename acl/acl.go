@@ -50,6 +50,7 @@ func BootstrapACL(consulAddress, consulPort string) {
 
 	err = json.Unmarshal(bodyBytes, &output)
 	if err != nil {
+		log.Println(string(bodyBytes))
 		log.Fatal(err)
 	}
 
