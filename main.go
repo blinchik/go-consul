@@ -6,18 +6,10 @@ import (
 	"os"
 
 	acl "github.com/blinchik/go-consul/acl"
-	discover "github.com/blinchik/go-utils/discover"
 )
 
 var consulAddress string
 var consulPort = "8500"
-
-func init() {
-
-	log.SetFlags(log.LstdFlags | log.Lshortfile)
-
-	consulAddress = discover.GetIP("Name", "blinchik_consul")
-}
 
 func main() {
 
