@@ -10,6 +10,7 @@ import (
 
 var consulAddress string
 var consulPort = "8500"
+var consulRootPath string
 
 func main() {
 
@@ -24,10 +25,11 @@ func main() {
 		if os.Args[2] != "" {
 
 			consulAddress = os.Args[2]
-			consulPort = "80"
+			consulPort = os.Args[3]
+			consulRootPath = os.Args[4]
 		}
 
-		acl.BootstrapACL(consulAddress, consulPort)
+		acl.BootstrapACL(consulAddress,consulRootPath, consulPort)
 
 	}
 

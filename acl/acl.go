@@ -28,11 +28,11 @@ type bootstrapACLResponse struct {
 
 //BootstrapACL This endpoint does a special one-time bootstrap of the ACL system, making the first management token if the acl.tokens.master configuration entry is not
 //specified in the Consul server configuration and if the cluster has not been bootstrapped previously.
-func BootstrapACL(consulAddress, consulPort string) {
+func BootstrapACL(consulAddress, consulRootPath, consulPort string, ) {
 
 	var output bootstrapACLResponse
 
-	req, err := http.NewRequest("PUT", fmt.Sprintf("http://%s:%s/v1/acl/bootstrap", consulAddress, consulPort), nil)
+	req, err := http.NewRequest("PUT", fmt.Sprintf("http://%s:%s/%s/acl/bootstrap", consulAddress,consulPort,consulRootPath), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -43,6 +43,9 @@ func BootstrapACL(consulAddress, consulPort string) {
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
+
+	log.Println(bodyBytes)
+
 
 	if err != nil {
 		log.Fatal(err)
