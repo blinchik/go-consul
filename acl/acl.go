@@ -44,8 +44,6 @@ func BootstrapACL(consulAddress, consulRootPath, consulPort string, ) {
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 
-	log.Println(bodyBytes)
-
 
 	if err != nil {
 		log.Fatal(err)
