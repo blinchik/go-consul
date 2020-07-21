@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 
 	secret "github.com/blinchik/go-aws/lib/secrets"
 )
@@ -52,7 +53,15 @@ func BootstrapACL(consulAddress, consulRootPath, consulPort string, ) {
 	err = json.Unmarshal(bodyBytes, &output)
 	if err != nil {
 		log.Println(string(bodyBytes))
-		log.Fatal(err)
+
+		if strings.Contains(string(bodyBytes), "ACL bootstrap no longer allowed") {
+
+			return
+		} else {
+			
+			log.Fatal(err)
+
+		}
 	}
 
 	secret.CreateSecret(output.Description, output.Policies[0].Name, output.SecretID)
