@@ -17,6 +17,7 @@ func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 	bootstrapACL := flag.Bool("bootstrap", false, "bootstrap")
+	updateACL := flag.Bool("updateACL", false, "updateACL")
 
 	flag.Parse()
 
@@ -29,7 +30,17 @@ func main() {
 			consulRootPath = os.Args[4]
 		}
 
-		acl.BootstrapACL(consulAddress,consulRootPath, consulPort)
+		acl.BootstrapACL(consulAddress, consulRootPath, consulPort)
+
+	}
+
+	if *updateACL {
+
+		consulAddress = os.Args[2]
+		consulPort = os.Args[3]
+		consulRootPath = os.Args[4]
+
+		acl.UpdateACLToken(consulAddress, consulRootPath, consulPort, os.Args[5])
 
 	}
 
