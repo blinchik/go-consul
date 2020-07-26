@@ -47,15 +47,17 @@ func main() {
 
 			acl.UpdateACLToken(consulAddress, consulRootPath, consulPort, secretValue, secretValue)
 
+		} else {
+
+			consulAddress = os.Args[2]
+			consulPort = os.Args[3]
+			consulRootPath = os.Args[4]
+
+			secretValue := secret.GetSecret("global-management", "AWSCURRENT")
+
+			acl.UpdateACLToken(consulAddress, consulRootPath, consulPort, os.Args[5], secretValue)
+
 		}
-
-		consulAddress = os.Args[2]
-		consulPort = os.Args[3]
-		consulRootPath = os.Args[4]
-
-		secretValue := secret.GetSecret("global-management", "AWSCURRENT")
-
-		acl.UpdateACLToken(consulAddress, consulRootPath, consulPort, os.Args[5], secretValue)
 
 	}
 
