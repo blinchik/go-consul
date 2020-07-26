@@ -57,7 +57,7 @@ func BootstrapACL(consulAddress, consulRootPath, consulPort string) {
 
 			return
 		} else {
-			
+
 			log.Fatal(err)
 
 		}
@@ -78,7 +78,7 @@ func UpdateACLToken(consulAddress, consulRootPath, consulPort, token, consulToke
 		log.Fatal(err)
 	}
 
-	req.Header.Set("X-Consul-Token", consulToken)
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", consulToken))
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
